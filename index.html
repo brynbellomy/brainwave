@@ -1,0 +1,28 @@
+<html>
+    <head>
+    </head>
+
+    <body>
+
+        <div id="left">
+            <label for="frequency-left">Left frequency:</label>
+            <input id="frequency-left" />
+        </div>
+
+        <div id="right">
+            <label for="frequency-right">Right frequency:</label>
+            <input id="frequency-right" />
+        </div>
+
+        <div id="master">
+            <label for="osc-gain">Binaural beats volume:</label>
+            <input id="osc-gain" type="range" min="0" max="0.5" step="0.01" />
+
+            <label for="audio-gain">Audio volume:</label>
+            <input id="audio-gain" type="range" min="0" max="0.5" step="0.01" />
+        </div>
+
+        <script src="build/brainwave.js" type="text/javascript"></script>
+
+    </body>
+</html>
