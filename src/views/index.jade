@@ -1,0 +1,27 @@
+include mixins
+
+doctype
+html
+    head
+    body
+        #status-message Loading...
+
+        #interface
+
+            #left
+                +text-input('frequency-left', 'Left frequency')
+
+            #right
+                +text-input('frequency-right', 'Right frequency')
+
+            #master
+                +slider('osc-gain',   'Binaural beats volume', 0, 0.5, 0.01)
+                +slider('audio-gain', 'Audio volume',          0, 0.5, 0.01)
+                +slider('audio-pan',  'Audio pan',            -1,   1, 0.01)
+
+                +button('button-start', 'Start')
+                +button('button-stop', 'Stop')
+
+
+
+        script(src='brainwave.js', type='text/javascript')

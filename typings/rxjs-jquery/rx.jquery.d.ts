@@ -1,0 +1,1 @@
+../../bower_components/rxjs-jquery/ts/rx.jquery.d.ts
