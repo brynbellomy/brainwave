@@ -9,6 +9,8 @@ export class AudioFileChannel extends Channel implements IChannel
 {
     private bufferSourceNode: AudioBufferSourceNode;
 
+    rx_isLoading = new Rx.ReplaySubject<boolean>(1)
+
     constructor (audioContext: AudioContext, fileURL: string) {
         super(audioContext)
 
@@ -19,7 +21,7 @@ export class AudioFileChannel extends Channel implements IChannel
     }
 
     load (url:string): void {
-        this.emit('loading')
+        this.rx_isLoading.onNext(true)
 
         let request = new XMLHttpRequest()
         request.open('GET', url, true)
@@ -29,7 +31,7 @@ export class AudioFileChannel extends Channel implements IChannel
         request.onload = () => {
             this.audioContext.decodeAudioData(request.response, (buffer) => {
                 this.bufferSourceNode.buffer = buffer
-                this.emit('ready')
+                this.rx_isLoading.onNext(false)
             }, () => { throw new Error('Error loading audio file') })
         }
 

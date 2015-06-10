@@ -2,29 +2,22 @@
 require('shelljs/global')
 
 var gulp = require('gulp')
-  , rename = require('gulp-rename')
-  , jade = require('gulp-jade')
-  , uglify = require('gulp-uglify')
-  , jasmine = require('gulp-jasmine')
+  , $ = require('gulp-load-plugins')()
   , browserify = require('browserify')
   , source = require('vinyl-source-stream')
+  , mainBowerFiles = require('main-bower-files')
   , fs = require('fs')
   , path = require('path')
 
 
 gulp.task('default', ['build'])
 
-gulp.task('build', ['build-js', 'build-html'])
+gulp.task('build', ['build-js', 'build-html', 'build-less', 'copy-static'])
 
-gulp.task('build-js', function () {
+gulp.task('build-js', ['build-bower'], function () {
     var bundler = browserify({ basedir: '.', debug: true })
-                    .add('bower_components/rxjs/index.js')
-                    .add('bower_components/rxjs-jquery/rx.jquery.js')
                     .add('src/index.ts') // add the entry point
-                    .plugin('tsify') // tsify's config is automatically read from the tsconfig.json in the same directory as the gulpfile, if one exists.
-                    .transform('debowerify') // debowerify modifies bower packages so as to be compatible with browserify
-                    // .transform('deamdify')
-                    // .add('node_modules/rxjs-jquery/rx.jquery.js')
+                    .plugin('tsify')     // tsify's config is automatically read from the tsconfig.json in the same directory as the gulpfile, if one exists.
 
     return bundler.bundle()
                   .pipe(source('brainwave.js'))
@@ -33,8 +26,37 @@ gulp.task('build-js', function () {
 
 gulp.task('build-html', function () {
     return gulp.src('src/views/index.jade')
-               .pipe(jade())
+               .pipe($.jade())
                .pipe(gulp.dest('build'))
+})
+
+gulp.task('copy-static', function () {
+    return gulp.src('public/*.*')
+               .pipe(gulp.dest('build'))
+})
+
+gulp.task('build-bower', function () {
+    var bowerFiles = mainBowerFiles({
+        overrides: {
+            // we don't want the entire Rx.js package, it's enormous and redundant to import all of the files
+            rxjs: { main: [ 'dist/rx.all.js', 'dist/rx.all.compat.js', ] }
+        }
+    })
+    return gulp.src(bowerFiles, {base: 'bower_components'})
+               .pipe(gulp.dest('build/vendor'))
+})
+
+gulp.task('build-less', function () {
+    return gulp.src('src/styles/index.less')
+        .pipe($.lessSourcemap({
+            sourceMap: {
+                sourceMapRootpath: '../src',
+                sourceMapFileInline: true,
+            },
+        }))
+        .on('error', function (err) { console.error('Error building LESS:', err) })
+        .pipe($.concat('brainwave.css'))
+        .pipe(gulp.dest('build'))
 })
 
 

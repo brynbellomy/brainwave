@@ -1,6 +1,9 @@
 {   "folders": [
-     {   "path": ".",
-         "name": "brainwave" }
+         {   
+             "path": ".",
+             "name": "brainwave",
+             "folder_exclude_patterns": ["node_modules", "bower_components", "build"]
+         }
      ]
  }
 

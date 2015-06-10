@@ -1,7 +1,6 @@
 
 ///<reference path='../typings/tsd.d.ts' />
 
-import * as Rx from 'rx'
 import { BinauralGenerator } from './binaural-generator'
 import { UpdateTimer } from './update-timer'
 

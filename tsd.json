@@ -19,6 +19,18 @@
     },
     "rx-jquery/rx.jquery.d.ts": {
       "commit": "c50b111ded0a3a18b87b5abffea3150d6aca94da"
+    },
+    "express/express.d.ts": {
+      "commit": "43861a1703feb7c6c413a4026a262c2ecb97eec0"
+    },
+    "cookie-parser/cookie-parser.d.ts": {
+      "commit": "43861a1703feb7c6c413a4026a262c2ecb97eec0"
+    },
+    "morgan/morgan.d.ts": {
+      "commit": "43861a1703feb7c6c413a4026a262c2ecb97eec0"
+    },
+    "serve-favicon/serve-favicon.d.ts": {
+      "commit": "43861a1703feb7c6c413a4026a262c2ecb97eec0"
     }
   }
 }

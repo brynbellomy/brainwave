@@ -1,0 +1,48 @@
+
+@import "mixins.less";
+
+section {
+    padding: 0.8rem;
+    width: 640px;
+}
+
+h2 {
+    margin: 0.4rem 0;
+}
+
+label, .label {
+    display: inline-block;
+    width: 200px;
+}
+
+#status-message {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#controls {
+    background-color: #918370;
+    .border-radius(4px);
+
+    .parameters, .buttons {
+        padding: 15px;
+    }
+}
+
+#readout {
+}
+
+.control-wrapper {
+}
+
+.buttons {
+    .control {
+        float: left;
+    }
+}
+
+.clearfix {
+    clear: both;
+}

@@ -1,0 +1,24 @@
+{
+  "name": "brainwave",
+  "version": "0.0.1",
+  "homepage": "https://github.com/brynbellomy/brainwave",
+  "authors": [
+    "bryn austin bellomy <bryn.bellomy@gmail.com>"
+  ],
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "rxjs-jquery": "~1.1.7"
+  }
+}

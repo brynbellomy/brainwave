@@ -1,8 +1,9 @@
 
 ///<reference path='../typings/tsd.d.ts' />
 
+import * as assert from 'assert'
+import * as helpers from './helpers'
 import { EventEmitter } from 'events'
-import * as Rx from 'rx'
 import { Channel } from './channel'
 import { OscillatorChannel } from './oscillator-channel'
 import { AudioFileChannel } from './audio-file-channel'
@@ -26,6 +27,9 @@ export class BinauralGenerator
     get oscGain(): number { return this.oscGainNode.gain.value }
     set oscGain(val: number) { this.oscGainNode.gain.value = val }
 
+    rx_isPlaying = new Rx.Subject<boolean>()
+    private isPlaying: boolean = false
+
 
     constructor (audioContext: AudioContext = new AudioContext()) {
         this.audioContext = audioContext
@@ -40,14 +44,18 @@ export class BinauralGenerator
         this.rightChannel.connect(this.oscGainNode)
         this.oscGainNode.connect(this.audioContext.destination)
 
+        this.initializeAudioChannel()
+
         this.leftChannel.panning = -1
         this.rightChannel.panning = 1
         this.oscGain = 0.1
+
+        this.rx_isPlaying.onNext(this.isPlaying)
     }
 
     private initializeAudioChannel(): void {
 
-        this.audioChannel = new AudioFileChannel(this.audioContext, 'http://illumntr-website.s3-website-us-west-2.amazonaws.com/rain.m4a')
+        this.audioChannel = new AudioFileChannel(this.audioContext, helpers.resourceURL('rain.m4a'))
         this.audioGainNode = this.audioContext.createGain()
 
         this.audioChannel.connect(this.audioGainNode)
@@ -56,15 +64,25 @@ export class BinauralGenerator
     }
 
     start (time:number = 0): void {
+        assert(this.isPlaying === false)
+
         this.leftChannel.start(time)
         this.rightChannel.start(time)
-        // this.audioChannel.start(time)
+        this.audioChannel.start(time)
+
+        this.isPlaying = true
+        this.rx_isPlaying.onNext(this.isPlaying)
     }
 
     stop (time:number = 0): void {
+        assert(this.isPlaying === true)
+
         this.leftChannel.stop(time)
         this.rightChannel.stop(time)
-        // this.audioChannel.stop(time)
+        this.audioChannel.stop(time)
+
+        this.isPlaying = false
+        this.rx_isPlaying.onNext(this.isPlaying)
     }
 }
 

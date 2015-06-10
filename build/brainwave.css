@@ -1,0 +1,35 @@
+section {
+  padding: 0.8rem;
+  width: 640px;
+}
+h2 {
+  margin: 0.4rem 0;
+}
+label,
+.label {
+  display: inline-block;
+  width: 200px;
+}
+#status-message {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#controls {
+  background-color: #918370;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+#controls .parameters,
+#controls .buttons {
+  padding: 15px;
+}
+.buttons .control {
+  float: left;
+}
+.clearfix {
+  clear: both;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9pbmRleC5sZXNzIiwiLi4vc3JjL21peGlucy5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUdBO0VBQ0ksZUFBQTtFQUNBLFlBQUE7O0FBR0o7RUFDSSxnQkFBQTs7QUFHSjtBQUFPO0VBQ0gscUJBQUE7RUFDQSxZQUFBOztBQUdKO0VBQ0ksYUFBQTtFQUNBLGtCQUFBO0VBQ0EsTUFBQTtFQUNBLE9BQUE7O0FBR0o7RUFDSSx5QkFBQTtFQ3RCQSxrQkFBQTtFQUNBLHVCQUFBOztBRG9CSixTQUlJO0FBSkosU0FJaUI7RUFDVCxhQUFBOztBQVVSLFFBQ0k7RUFDSSxXQUFBOztBQUlSO0VBQ0ksV0FBQSJ9 */
+{"version":3,"sources":["../src/index.less","../src/mixins.less"],"names":[],"mappings":"AAGA;EACI,eAAA;EACA,YAAA;;AAGJ;EACI,gBAAA;;AAGJ;AAAO;EACH,qBAAA;EACA,YAAA;;AAGJ;EACI,aAAA;EACA,kBAAA;EACA,MAAA;EACA,OAAA;;AAGJ;EACI,yBAAA;ECtBA,kBAAA;EACA,uBAAA;;ADoBJ,SAII;AAJJ,SAIiB;EACT,aAAA;;AAUR,QACI;EACI,WAAA;;AAIR;EACI,WAAA"}

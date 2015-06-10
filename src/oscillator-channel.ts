@@ -1,7 +1,6 @@
 
 ///<reference path='../typings/tsd.d.ts' />
 
-import * as Rx from 'rx'
 import { EventEmitter } from 'events'
 import { IChannel, Channel } from './channel'
 
@@ -14,18 +13,15 @@ export class OscillatorChannel extends Channel implements IChannel
     set frequency (freqInHz:number) {
         if (freqInHz < 0) { throw new Error('frequency must be positive.') }
         this.osc.frequency.value = freqInHz
-        this._frequencySubject.onNext(freqInHz)
+        this.rx_frequency.onNext(freqInHz)
     }
 
-    private _frequencySubject: Rx.BehaviorSubject<number>;
-    get frequencyObservable(): Rx.Observable<number> {
-        return this._frequencySubject.asObservable()
-    }
+    rx_frequency = new Rx.ReplaySubject<number>(1)
 
     constructor (audioContext:AudioContext, freqInHz:number) {
         super(audioContext)
 
-        this._frequencySubject = new Rx.BehaviorSubject<number>(freqInHz)
+        // this._frequencySubject = new Rx.BehaviorSubject<number>(freqInHz)
 
         this.osc = this.audioContext.createOscillator()
         this.osc.type = 'sine'
