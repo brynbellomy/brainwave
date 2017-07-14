@@ -1,48 +1,22 @@
 
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic);
 @import "mixins.less";
 
-section {
-    padding: 0.8rem;
-    width: 640px;
+* {
+    font-family: Roboto, sans-serif;
 }
 
-h2 {
-    margin: 0.4rem 0;
-}
-
-label, .label {
-    display: inline-block;
-    width: 200px;
-}
-
-#status-message {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#controls {
-    background-color: #918370;
-    .border-radius(4px);
-
-    .parameters, .buttons {
-        padding: 15px;
+#content {
+    & > h1 {
+        float: none;
+        clear: both;
     }
-}
 
-#readout {
-}
-
-.control-wrapper {
-}
-
-.buttons {
-    .control {
+    & > * {
+        margin: 14px;
         float: left;
+        width: 600px;
     }
 }
 
-.clearfix {
-    clear: both;
-}
+

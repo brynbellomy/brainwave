@@ -4,16 +4,32 @@
         "target": "es5",
         "declaration": false,
         "sourceMap": true,
-        "outDir": "build"
+        "inlineSourceMap": false,
+        "preserveConstEnums": true,
+        "removeComments": true,
+
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+
+        "moduleResolution": "node",
+        "rootDir": "src",
+        "outDir": "build",
+
+        "jsx": "react"
     },
     "files": [
-        "src/index.ts"
-      , "src/helpers.ts"
-      , "src/audio-file-channel.ts"
-      , "src/oscillator-channel.ts"
-      , "src/channel.ts"
-      , "src/automation.ts"
-      , "src/update-timer.ts"
+        "src/index.tsx"
+
+      , "src/components/FrequencyReadout.tsx"
+
+      , "src/audio/helpers.ts"
+      , "src/audio/audio-file-channel.ts"
+      , "src/audio/binaural-generator.ts"
+      , "src/audio/oscillator-channel.ts"
+      , "src/audio/channel.ts"
+      , "src/audio/automation.ts"
+      , "src/audio/update-timer.ts"
+
       , "typings/tsd.d.ts"
     ]
 }
